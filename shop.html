@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gadget Galaxy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .message-box, .cart-modal {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transform: translateY(0);
+        }
+        .message-box.hidden, .cart-modal.hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+
+    <!-- Header Section -->
+    <header class="bg-gray-800 shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <div>
+                <a href="#" class="text-3xl font-extrabold text-white tracking-tight">Gadget Galaxy</a>
+                <p class="text-sm font-medium text-gray-400 mt-1">Owner: Alchie Oril| Contact: 09166058105</p>
+            </div>
+            <div class="relative">
+                <svg id="cart-icon" xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-gray-400 hover:text-white cursor-pointer transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.141 1.697.707 1.697H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 110 4 2 2 0 010-4z" />
+                </svg>
+                <span id="cart-counter" class="absolute -top-2 -right-2 bg-purple-500 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center transition-transform duration-300 transform scale-100">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Success Message Box for Add to Cart -->
+    <div id="message-box" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-8 py-4 rounded-full shadow-lg opacity-0 message-box z-50 hidden">
+        Added to Cart!
+    </div>
+    
+    <!-- Success Message Box for Checkout -->
+    <div id="checkout-message-box" class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-indigo-600 text-white px-8 py-4 rounded-full shadow-lg opacity-0 message-box z-50 hidden">
+        Thank you for your purchase!
+    </div>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <h1 class="text-5xl font-extrabold text-center text-white mb-14 tracking-wide">Explore the Future of Tech</h1>
+
+        <!-- Product Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+            <!-- Product Card 1: Drone -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Drone.jpg" alt="Drone" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">Compact Drone</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="299.00">$299.00</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+
+            <!-- Product Card 2: Smartwatch -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Smartwatch.jpg" alt="Smartwatch" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">Smartwatch Pro</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="199.99">$199.99</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+
+            <!-- Product Card 3: Headphones -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Headphones.jpg" alt="Headphones" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">Noise-Cancelling Headphones</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="89.50">$89.50</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+
+            <!-- Product Card 4: Speaker -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Speaker.jpg" alt="Speaker" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">Bluetooth Speaker</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="59.99">$59.99</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+
+            <!-- Product Card 5: Laptop -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Laptop.jpg" alt="Laptop" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">Ultrabook Laptop</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="1299.00">$1,299.00</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+
+            <!-- Product Card 6: VR Headset -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Vr.jpg" alt="VR Headset" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">VR Headset</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="399.00">$399.00</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+
+            <!-- Product Card 7: Gaming Mouse -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Mouse.jpg" alt="Gaming Mouse" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">Precision Gaming Mouse</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="79.99">$79.99</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+
+            <!-- Product Card 8: Portable Projector -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Projector.jpg" alt="Portable Projector" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">Portable Projector</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="249.00">$249.00</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+            
+            <!-- Product Card 9: Wireless Charger -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Wirelesschargingpad.jpg" alt="Wireless Charger" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">Wireless Charging Pad</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="49.00">$49.00</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+
+            <!-- Product Card 10: Smart Home Hub -->
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-8 flex flex-col items-center text-center transition-transform transform hover:scale-105 hover:-translate-y-2 duration-300">
+                <img src="C:/SHOP/Homehub.jpg" alt="Smart Home Hub" class="rounded-2xl mb-6 shadow-md">
+                <h2 class="text-2xl font-bold text-white mb-2 product-name">Smart Home Hub</h2>
+                <p class="text-gray-400 text-xl font-extrabold mb-5 product-price" data-price="129.00">$129.00</p>
+                <button class="add-to-cart-btn w-full bg-gradient-to-r from-purple-500 to-indigo-600 text-white py-4 px-8 rounded-full font-bold hover:from-purple-600 hover:to-indigo-700 transition duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-3xl shadow-2xl w-full max-w-lg mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-white">Your Cart</h2>
+                <button id="close-cart-btn" class="text-gray-400 hover:text-white transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <ul id="cart-items" class="space-y-4">
+                <!-- Cart items will be dynamically added here -->
+            </ul>
+            <div class="mt-8 pt-4 border-t border-gray-700 flex justify-between items-center">
+                <span id="cart-total" class="text-2xl font-bold text-white">Total: $0.00</span>
+                <button id="checkout-btn" class="bg-indigo-600 text-white py-3 px-8 rounded-full font-bold hover:bg-indigo-700 transition duration-300">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-gray-400 text-center py-8 mt-16 shadow-inner">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2023 Gadget Galaxy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartCounter = document.getElementById('cart-counter');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            const messageBox = document.getElementById('message-box');
+            const checkoutMessageBox = document.getElementById('checkout-message-box');
+            const cartIcon = document.getElementById('cart-icon');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCartBtn = document.getElementById('close-cart-btn');
+            const cartItemsList = document.getElementById('cart-items');
+            const cartTotalSpan = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            // An array to store the items in the cart
+            let cartItems = [];
+
+            // Function to update the cart counter and the cart total
+            function updateCartDisplay() {
+                let totalItems = 0;
+                let totalPrice = 0;
+                cartItems.forEach(item => {
+                    totalItems += item.quantity;
+                    totalPrice += item.quantity * item.price;
+                });
+                cartCounter.textContent = totalItems;
+                cartTotalSpan.textContent = `Total: $${totalPrice.toFixed(2)}`;
+
+                // Apply a bounce effect to the counter
+                cartCounter.classList.add('scale-125');
+                setTimeout(() => {
+                    cartCounter.classList.remove('scale-125');
+                }, 300);
+            }
+
+            // Function to render the cart items in the modal
+            function renderCart() {
+                cartItemsList.innerHTML = ''; // Clear previous items
+                if (cartItems.length === 0) {
+                    cartItemsList.innerHTML = '<p class="text-center text-gray-400">Your cart is empty.</p>';
+                } else {
+                    cartItems.forEach(item => {
+                        const li = document.createElement('li');
+                        li.className = 'flex items-center justify-between p-4 bg-gray-700 rounded-xl shadow-md';
+                        li.innerHTML = `
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold">${item.name}</h3>
+                                <p class="text-gray-400">${item.quantity} x $${item.price.toFixed(2)}</p>
+                            </div>
+                            <span class="text-lg font-bold text-white">$${(item.quantity * item.price).toFixed(2)}</span>
+                        `;
+                        cartItemsList.appendChild(li);
+                    });
+                }
+            }
+
+            // Function to show a temporary message box
+            function showMessage(element, duration = 1500) {
+                element.classList.remove('hidden', 'opacity-0');
+                element.classList.add('opacity-100');
+                setTimeout(() => {
+                    element.classList.remove('opacity-100');
+                    element.classList.add('hidden');
+                }, duration);
+            }
+
+            // Event listener for "Add to Cart" buttons
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productCard = e.target.closest('div');
+                    const name = productCard.querySelector('.product-name').textContent;
+                    const price = parseFloat(productCard.querySelector('.product-price').dataset.price);
+
+                    const existingItem = cartItems.find(item => item.name === name);
+
+                    if (existingItem) {
+                        existingItem.quantity++;
+                    } else {
+                        cartItems.push({ name, price, quantity: 1 });
+                    }
+
+                    updateCartDisplay();
+                    showMessage(messageBox);
+                });
+            });
+
+            // Event listener to open the cart modal
+            cartIcon.addEventListener('click', () => {
+                renderCart();
+                cartModal.classList.remove('hidden');
+            });
+
+            // Event listener to close the cart modal
+            closeCartBtn.addEventListener('click', () => {
+                cartModal.classList.add('hidden');
+            });
+
+            // Event listener for the "Checkout" button
+            checkoutBtn.addEventListener('click', () => {
+                if (cartItems.length > 0) {
+                    cartItems = []; // Clear the cart
+                    updateCartDisplay(); // Update the counter and total
+                    renderCart(); // Update the cart modal display
+                    cartModal.classList.add('hidden'); // Close the modal
+                    showMessage(checkoutMessageBox, 3000); // Show checkout success message
+                } else {
+                    // This can be used for future feedback if the cart is empty
+                    // For now, it simply does nothing
+                }
+            });
+        });
+    </script>
+</body>
+</html>
